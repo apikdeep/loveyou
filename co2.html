@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Marry Me?</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(to bottom, #ffcccc, #ff99cc);
+            overflow: hidden;
+            position: relative;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            border: 2px solid #ff69b4;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+            width: 70%; /* Set a width for smaller screens */
+            max-width: 400px; /* Limit max width for larger screens */
+        }
+        h1 {
+            color: #ff69b4;
+            font-size: 2.5em;
+            margin: 0;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff69b4;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            margin: 10px;
+            max-width: 90%; /* Make buttons responsive */
+            width: 100px; /* Set a fixed width for larger screens */
+        }
+        button:hover {
+            background-color: #ff1493;
+        }
+        #response {
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: #ff69b4;
+        }
+        .heart {
+            position: absolute;
+            top: -50px;
+            font-size: 24px;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% { top: -50px; }
+            100% { top: 100vh; }
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em; /* Smaller title font size on mobile */
+            }
+            button {
+                font-size: 14px; /* Smaller button font size on mobile */
+                width: 100%; /* Make buttons full width on small screens */
+                max-width: none; /* Remove max-width restriction */
+            }
+            #response {
+                font-size: 1.2em; /* Smaller response text on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Will You Marry Me?</h1>
+        <button id="yesButton" onclick="yesResponse()">Yes, Baby!</button>
+        <button id="noButton" onclick="noResponse()">No, Babes!</button>
+        <p id="response"></p>
+    </div>
+
+    <script>
+        function yesResponse() {
+            document.getElementById('response').innerText = "Yay! ❤️ Forever together!";
+            setTimeout(() => {
+                window.location.href = "https://wa.me/%3C8924954345%3E?text=I-will-marry-you"; // Replace with your desired URL
+            }, 1500); // Redirect after 2 seconds
+        }
+
+        function noResponse() {
+            const noButton = document.getElementById('noButton');
+            noButton.style.position = 'absolute';
+            noButton.style.left = Math.random() * 80 + 'vw'; // Random horizontal position
+            noButton.style.top = Math.random() * 80 + 'vh'; // Random vertical position
+            document.getElementById('response').innerText = "Aww, why not? plzz maan jaao 🥺";
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw'; // Random horizontal position
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's'; // Random falling speed
+            document.body.appendChild(heart);
+
+            heart.addEventListener('animationend', () => {
+                heart.remove(); // Remove heart after animation
+            });
+        }
+
+        setInterval(createHeart, 300); // Create hearts every 300ms
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>date</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <audio id="background-audio" src="./Anuv Jain - JO TUM MERE HO (Official Video).mp3" preload="auto" loop></audio>
+    <div class="container">
+        <h1>We have spent </h1>
+        <div id="countdown">
+            <p id="time-elapsed"></p>
+        </div>
+        <h1>🥰 I love you Deepu  🥰</h1>
+        <h3>🥺 wana be with you till eternity 🥺</h3>
+        <form action="/pass.html">
+            <button>🥰 Come with me 🥰</button>
+        </form>
+    </div>
+    <div id="message"></div>
+    <div class="hearts">
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const audio = document.getElementById('background-audio');
+            audio.play().catch(error => {
+                console.log("Audio playback failed: " + error);
+            });
+        });
+    </script>
+</body>
+</html>
