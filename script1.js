@@ -3,10 +3,7 @@ const message = document.getElementById('message');
 const submitButton = document.getElementById('submitPattern');
 
 let currentPattern = [];
-const patterns = {
-    '1,0,2,3': 'content.html', // First correct pattern
-    '8,1,2,4': 'yy.html' // Second correct pattern
-};
+const correctPattern = ['1', '0', '2', '3']; // Example pattern
 
 function createGrid() {
     for (let i = 0; i < 9; i++) {
@@ -41,12 +38,10 @@ function resetPattern() {
 }
 
 submitButton.addEventListener('click', () => {
-    const patternKey = currentPattern.join(',');
-    console.log(`Submitted pattern: ${patternKey}`);
-    
-    if (patterns[patternKey]) {
+    console.log(`Submitted pattern: ${currentPattern}`);
+    if (currentPattern.join(',') === correctPattern.join(',')) {
         console.log('Pattern is correct, redirecting...');
-        window.location.href = patterns[patternKey];
+        window.location.href = 'content.html';
     } else {
         message.textContent = 'Pattern is incorrect. Try again.';
         message.style.color = 'red';
