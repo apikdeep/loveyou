@@ -78,7 +78,7 @@ h2 {
     background-color: #ffab40; /* Warm orange on hover */
 }
 
-#submitPattern {
+#submitPattern,.a {
     background-color: #f06292; /* Soft pink */
     color: white;
     border: none;
