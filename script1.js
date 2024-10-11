@@ -1,101 +1,58 @@
-body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f4f4f4;
+const patternLock = document.getElementById('patternLock');
+const message = document.getElementById('message');
+const submitButton = document.getElementById('submitPattern');
+
+let currentPattern = [];
+const patterns = {
+    '1,0,2,3': 'content.html', // First correct pattern
+    '8,1,2,4': 'yy.html' // Second correct pattern
+};
+
+function createGrid() {
+    for (let i = 0; i < 9; i++) {
+        const cell = document.createElement('div');
+        cell.classList.add('cell');
+        cell.dataset.index = i;
+        cell.innerText = i; // Display the index for clarity
+
+        cell.addEventListener('click', () => addToPattern(i));
+
+        patternLock.appendChild(cell);
+    }
 }
 
-.container {
-    text-align: center;
+function addToPattern(index) {
+    console.log(`Cell ${index} clicked`);
+    const cell = patternLock.children[index];
+    if (!currentPattern.includes(index)) {
+        currentPattern.push(index);
+        cell.classList.add('active');
+        console.log(`Current pattern: ${currentPattern}`);
+    } else {
+        console.log(`Cell ${index} already included.`);
+    }
 }
 
-.pattern-lock {
-    display: grid;
-    grid-template-columns: repeat(3, 50px);
-    grid-template-rows: repeat(3, 50px);
-    gap: 10px;
-    margin: 20px auto;
+function resetPattern() {
+    console.log('Resetting pattern');
+    currentPattern = [];
+    const cells = document.querySelectorAll('.cell');
+    cells.forEach(cell => cell.classList.remove('active'));
 }
 
-.cell {
-    width: 50px;
-    height: 50px;
-    background-color: #ccc;
-    border-radius: 10px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-}
+submitButton.addEventListener('click', () => {
+    const patternKey = currentPattern.join(',');
+    console.log(`Submitted pattern: ${patternKey}`);
+    
+    if (patterns[patternKey]) {
+        console.log('Pattern is correct, redirecting...');
+        window.location.href = patterns[patternKey];
+    } else {
+        message.textContent = 'Pattern is incorrect. Try again.';
+        message.style.color = 'red';
+        resetPattern();
+    }
+});
 
-.cell.active {
-    background-color: #007bff;
-}
-
-body {
-    background-color: #ffebee; /* Light pink background */
-    font-family: 'Arial', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
-
-.container {
-    text-align: center;
-    background-color: #fff; /* White background for the container */
-    border-radius: 15px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-}
-
-h2 {
-    color: #d81b60; /* Deep pink */
-    margin-bottom: 20px;
-}
-
-.pattern-lock {
-    display: grid;
-    grid-template-columns: repeat(3, 60px);
-    grid-template-rows: repeat(3, 60px);
-    gap: 10px;
-    margin: 0 auto;
-}
-
-.pattern-lock div {
-    width: 60px;
-    height: 60px;
-    background-color: #ffccbc; /* Light peach */
-    border-radius: 50%;
-    transition: background-color 0.3s;
-}
-
-.pattern-lock div:hover {
-    background-color: #ffab40; /* Warm orange on hover */
-}
-
-#submitPattern {
-    background-color: #f06292; /* Soft pink */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-#submitPattern:hover {
-    background-color: #c2185b; /* Darker pink on hover */
-}
-
-#message {
-    margin-top: 20px;
-    font-size: 1.2em;
-    color: #4a148c; /* Deep purple */
-}
-
-
+// Initialize the grid
+createGrid();
