@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Love You Deepu</title>
+    <style>
+        body {
+            background-color: pink;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            flex-direction: column;
+        }
+        h1 {
+            font-size: 3rem;
+            color: red;
+            font-family: Arial, sans-serif;
+        }
+        p {
+            font-size: 1.5rem;
+            color: red;
+            font-family: Arial, sans-serif;
+            margin-top: 10px;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .yes {
+            background-color: red;
+            color: white;
+        }
+        .no {
+            background-color: white;
+            color: red;
+        }
+        .yes:hover {
+            background-color: darkred;
+        }
+        .no:hover {
+            background-color: lightgray;
+        }
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            clip-path: polygon(50% 0%, 100% 30%, 75% 100%, 50% 75%, 25% 100%, 0% 30%);
+            animation: float 3s linear infinite;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) scale(1.5);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>I Love You Deepu ❤️</h1>
+    <p>Happy Propose Day! Today, I just want to say that you are the most special person in my life, and I want to be with you forever. Will you be mine? ❤️</p>
+    <div class="buttons">
+        <button class="yes" onclick="sendWhatsApp('I want to be yours! ❤️')">Yes</button>
+        <button class="no" onclick="sendWhatsApp('I am sorry, but I can’t. 💔')">No</button>
+    </div>
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            document.body.appendChild(heart);
+            
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 3000);
+        }
+        
+        setInterval(createHeart, 100);
+        
+        function sendWhatsApp(message) {
+            const phoneNumber = '8924954345';
+            const url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
